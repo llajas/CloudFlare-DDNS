@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "ddns.fullname" . }}
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ddns-container
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            env:
+              - name: CLOUDFLARE_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: ddns-updater-secrets
+                    key: cloudflareApiKey
+              - name: CLOUDFLARE_EMAIL
+                valueFrom:
+                  secretKeyRef:
+                    name: ddns-updater-secrets
+                    key: cloudflareEmail
+              - name: DOMAIN_NAME
+                valueFrom:
+                  secretKeyRef:
+                    name: ddns-updater-secrets
+                    key: domainName
+              - name: DNS_RECORD
+                valueFrom:
+                  secretKeyRef:
+                    name: ddns-updater-secrets
+                    key: dnsRecord
+          restartPolicy: OnFailure

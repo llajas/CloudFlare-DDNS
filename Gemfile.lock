@@ -1,0 +1,51 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    async (1.31.0)
+      console (~> 1.10)
+      nio4r (~> 2.3)
+      timers (~> 4.1)
+    async-http (0.63.0)
+      async (>= 1.25)
+      async-io (>= 1.28)
+      async-pool (>= 0.2)
+      protocol-http (~> 0.26.0)
+      protocol-http1 (~> 0.18.0)
+      protocol-http2 (~> 0.16.0)
+      traces (>= 0.10.0)
+    async-io (1.41.0)
+      async
+    async-pool (0.4.0)
+      async (>= 1.25)
+    async-rest (0.12.4)
+      async-http (~> 0.42)
+      protocol-http (~> 0.7)
+    cloudflare (4.3.0)
+      async-rest (~> 0.12.3)
+    console (1.23.6)
+      fiber-annotation
+      fiber-local
+      json
+    fiber-annotation (0.2.0)
+    fiber-local (1.0.0)
+    json (2.7.1)
+    nio4r (2.7.1)
+    protocol-hpack (1.4.3)
+    protocol-http (0.26.1)
+    protocol-http1 (0.18.0)
+      protocol-http (~> 0.22)
+    protocol-http2 (0.16.0)
+      protocol-hpack (~> 1.4)
+      protocol-http (~> 0.18)
+    timers (4.3.5)
+    traces (0.11.1)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  cloudflare
+
+BUNDLED WITH
+   2.5.4
